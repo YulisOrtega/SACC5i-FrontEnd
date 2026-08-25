@@ -222,12 +222,17 @@ export const useBajaGestion = ({ analistaId = null, isDireccion = false } = {}) 
 
     setLoadingDisponibles(true);
     try {
-      const { registros, paginacion } = await obtenerDisponiblesBaja({
+      const params = {
         busqueda: busquedaDisponibles,
         pagina: paginaDisponibles,
-        analista_id: analistaId,
         limit: 10
-      });
+      };
+
+      if (analistaId) {
+        params.analista_id = analistaId;
+      }
+
+      const { registros, paginacion } = await obtenerDisponiblesBaja(params);
       setDisponibles((registros || []).map(separarNombreYApellidos));
       setPaginacionDisponibles(paginacion);
     } catch (error) {
@@ -241,12 +246,19 @@ export const useBajaGestion = ({ analistaId = null, isDireccion = false } = {}) 
   const cargarBajas = useCallback(async () => {
     setLoadingBajas(true);
     try {
-      const { registros, paginacion } = await obtenerBajasRegistradas({
+      // 1. Preparamos los parámetros base
+      const params = {
         busqueda: busquedaBajas,
         pagina: paginaBajas,
-        analista_id: analistaId,
         limit: 10
-      });
+      };
+
+      // 2. Solo lo inyectamos si hay un analista seleccionado en Dirección
+      if (analistaId) {
+        params.analista_id = analistaId;
+      }
+
+      const { registros, paginacion } = await obtenerBajasRegistradas(params);
       setBajasRegistradas((registros || []).map(separarNombreYApellidos));
       setPaginacionBajas(paginacion);
     } catch (error) {
