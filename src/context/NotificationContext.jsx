@@ -267,16 +267,19 @@ export const NotificationProvider = ({ children }) => {
   }, [notificationHistory]);
 
   useEffect(() => {
-    cargarNotificacionesBackend();
-
-    const timer = window.setInterval(() => {
+      // 1. Esta es la clave: La llamamos inmediatamente al entrar a la pantalla
       cargarNotificacionesBackend();
-    }, 5000);
 
-    return () => {
-      window.clearInterval(timer);
-    };
-  }, [cargarNotificacionesBackend]);
+      // 2. Y aquí configuramos el temporizador para que busque silenciosamente cada 30 segundos (30000 ms)
+      const timer = window.setInterval(() => {
+        cargarNotificacionesBackend();
+      }, 30000); 
+
+      // 3. Limpiamos la basura cuando el usuario cierra sesión o cambia de pantalla
+      return () => {
+        window.clearInterval(timer);
+      };
+    }, []); 
 
   const clearNotificationTimer = useCallback((id) => {
     const timerId = notificationTimeoutsRef.current.get(id);

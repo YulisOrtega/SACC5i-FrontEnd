@@ -46,13 +46,14 @@ export const menuConfig = {
 ],
 
   [ROLES.COORDINADOR]: [
+    { icon: 'bx-test-tube', label: 'Filtrado Municipio', section: 'TestMunicipio', permission: PERMISSIONS.VIEW_PANEL_DIRECCION },
     { icon: 'bx-loader-circle', label: 'En Proceso', section: 'EnProceso', permission: PERMISSIONS.VIEW_PANEL_DIRECCION },
     { icon: 'bx-calendar-event', label: 'Citas', section: 'HistorialCitas', permission: PERMISSIONS.VIEW_PANEL_DIRECCION },
     { icon: 'bx-user-x', label: 'Bajas', section: 'Baja', permission: PERMISSIONS.VIEW_PANEL_DIRECCION },
     { icon: 'bx-badge-check', label: 'Finalizados', section: 'Finalizados', permission: PERMISSIONS.VIEW_PANEL_DIRECCION },
     { icon: 'bx-message-square-x', label: 'Rechazos', section: 'RechazosC3', permission: PERMISSIONS.VIEW_PANEL_DIRECCION },
     // Ruta de prueba para filtrado por municipio --- IGNORE ---:
-    { icon: 'bx-test-tube', label: 'Filtrado Municipio', section: 'TestMunicipio', permission: PERMISSIONS.VIEW_PANEL_DIRECCION }
+    
   ],
   
   [ROLES.ANALISTA]: [

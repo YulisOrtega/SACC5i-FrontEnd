@@ -10,8 +10,8 @@ import {
   BajaRegistroTabSection
 } from './components';
 
-export default function Baja({ setPageTitle, isDireccion = false }) {
-  const baja = useBajaGestion({ isDireccion });
+export default function Baja({ setPageTitle, isDireccion = false, analistaId = null }) {
+  const baja = useBajaGestion({ isDireccion, analistaId }); 
   const [tabActiva, setTabActiva] = useState(isDireccion ? 'dadas' : 'disponibles');
 
   useEffect(() => {

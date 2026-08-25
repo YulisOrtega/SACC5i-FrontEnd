@@ -107,7 +107,9 @@
   gap: 20px;
   align-items: flex-end;
   margin-bottom: 25px;
+  flex-wrap: wrap;
 }
+
 
 .buscador-card {
   background: white;
@@ -797,6 +799,8 @@
   }
 }
 
+
+
 /* ==========================================================================
    ANIMACIÓN DE ENTRADA SUAVE PARA TODA LA PANTALLA
 ========================================================================== */
@@ -810,6 +814,45 @@
     transform: translateY(0);
   }
 }
+
+/* ==========================================================================
+   CORRECCIÓN DE RESPONSIVIDAD PARA LAPTOPS Y PANTALLAS CHICAS
+========================================================================== */
+
+/* 1. Evita que los botones de acción se aplasten o se monten */
+.acciones-cell, 
+td:last-child {
+  white-space: nowrap !important;
+  min-width: 180px !important;
+}
+
+/* 2. Asegura que la tabla nunca rompa el diseño y active scroll horizontal limpio */
+.listado-nominal-container, 
+.baja-container, 
+.table-responsive-container {
+  width: 100%;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 3. Ajusta los contenedores de controles (buscador y botón superior) para que bajen en laptops */
+@media (max-width: 1366px) {
+  .controles-accion {
+    flex-wrap: wrap !important;
+  }
+  
+  .buscador-card {
+    flex: 1 1 100% !important;
+  }
+  
+  .btn-subir-listado {
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 5px !important;
+  }
+}
+
+
 
 /* ==========================================
    DARK MODE - LISTADO NOMINAL
